@@ -1,3 +1,5 @@
+
+//Zhi Feng
 import java.util.*;
 
 class Main {//1
@@ -12,11 +14,11 @@ class Main {//1
     int item = 0;
 
     //create a looping structure that allows the user to play until they choose to quit
-    // in the loop, present the user with a menu of options that asks the      user what they want to do:
+
     // 1. play
     // 2. shop
     // 3. quit
-    while (playing = true){//3
+    while (playing  ){//3
       System.out.println("What do you want to do \ntype 1 to play \ntype 2 to shop \ntype 3 to quit");
       int input = in.nextInt();
 
@@ -27,33 +29,29 @@ class Main {//1
       }
 
       else if (input == 2){
-      int UsedCoin = shop();
+      int UsedCoin = shop(totalCoins);
       totalCoins -= UsedCoin;
-      item++;
-      System.out.printf("You brought %d item(s)", item);
+
       System.out.println("You have "+ totalCoins +" in your bank");
       }
 
       else if (input == 3){
-      //playing = false; //for some reason don't work
-      System.exit(0);
+      //break;
+      playing = false;
+      //System.exit(0);
      }
 
    }//end of while loop
 
 
 
-    // based on their entry, call the method to perform that behavior
-    // at all times, keep updating the user's bank balance
-
-  in.close();
+   in.close();
  }//end main method
 
 
   /*
    * Name: play
-   * Purpose: simulate a round of the game, award the user a random
-              amount of coins for playing
+   * Purpose: simulate a round of the game, award the user a random amount of coins for playing
    * Input: none
    * Return: a random number of coins the user won that round
    */
@@ -68,12 +66,20 @@ class Main {//1
    * Input: how much player spend
    * Return: how many coins spent
    */
-  public static int shop () {//2
+  public static int shop (int totalCoins) {//2
     Scanner input = new Scanner(System.in);
     System.out.println("How much do you want to spend?");
     int amount = input.nextInt();
 
-    return amount;
-  }
+    if (amount <= totalCoins){
 
+      return amount;
+    }
+    else {
+      System.out.println("insufficient amount of coins");
+      return 0;
+    }
+
+
+  }
 }//end class1
