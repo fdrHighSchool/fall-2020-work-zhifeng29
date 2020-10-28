@@ -15,14 +15,12 @@ class Main{
   double y2 = gety(point2);
 
 /*
-  System.out.println(x1);
-  System.out.println(y1);
-  System.out.println(x2);
-  System.out.println(y2);
+
 */
   double strightline = cartesianDistance(x2,x1,y2,y1);
   System.out.println("cartesianDistance is "+ strightline +" meters");
-//  taxicabDistance(x2,x1,y2,y1);
+  double zigzag = taxicabDistance(x2,x1,y2,y1);
+  System.out.println("taxicabDistance is "+ zigzag+" meters");
 /*
   String Str = new String("Welcome to Hell");
 
@@ -38,10 +36,16 @@ class Main{
     //System.out.println(x2);
     double Distance = Math.pow(x2,2) + Math.pow(y2,2);
     //System.out.println(Distance);
-    Distance = Math.sqrt(Distance);
+    Distance = Math.abs(Math.sqrt(Distance));
     return Distance;
   }
-  //public static double taxicabDistance(double x1, double x2, double y1, double y2){}
+  public static double taxicabDistance(double x1, double x2, double y1, double y2){
+    x2-=x1;
+    y2-=y1;
+
+    double Distance = Math.abs(x2) + Math.abs(y2);
+    return Distance;
+  }
 
   public static double  getx(String point){
 
@@ -65,6 +69,7 @@ class Main{
    String y = point.substring(front,back);
 
    double ans = Integer.parseInt(y);
+
    return  ans ;
   }
 }
