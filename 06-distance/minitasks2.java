@@ -21,12 +21,7 @@ class Main{
   System.out.println("cartesianDistance is "+ strightline +" meters");
   double zigzag = taxicabDistance(x2,x1,y2,y1);
   System.out.println("taxicabDistance is "+ zigzag+" meters");
-/*
-  String Str = new String("Welcome to Hell");
 
-      System.out.println(Str.indexOf("or"));
-      System.out.println(Str.indexOf("el"));
-*/
   }
 
   public static double cartesianDistance(double x1, double x2, double y1, double y2){
