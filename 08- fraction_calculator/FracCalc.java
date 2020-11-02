@@ -1,10 +1,16 @@
-ublic class FracCalc {
-
+import java.util.Scanner;
+public class FracCalc {
     /**
      * Prompts user for input, passes that input to produceAnswer, then outputs the result.
      * @param args - unused
      */
     public static void main(String[] args){
+      Scanner in = new Scanner(System.in);
+      //while loop
+      System.out.println("please enter you equation?");
+      String input = in.nextLine();
+      String ans = produceAnswer(input);
+      System.out.println(ans);
         // TODO: Read the input from the user and call produceAnswer with an equation
         // Checkpoint 1: Create a Scanner, read one line of input, pass that input to produceAnswer, print the result.
         // Checkpoint 2: Accept user input multiple times.
@@ -18,6 +24,21 @@ ublic class FracCalc {
      *      Example: return ==> "1_1/4"
      */
     public static String produceAnswer(String input){
+      int end = input.length();
+      /*for (int i = 0 ; i > max ; i++){
+        if(input.substring(i,i+1) ){}
+        else if () {}*/
+      int space = input.indexOf(" ") + 1;
+
+      String num1 = input.substring(0,space);
+      System.out.println(num1);
+
+      int space2 = input.indexOf(" ", 2  ) + 1;
+      String num2 = input.substring(space2,end);
+
+
+
+
         // TODO: Implement this function to produce the solution to the input
         // Checkpoint 1: Return the second operand.  Example "4/5 * 1_2/4" returns "1_2/4".
         // Checkpoint 2: Return the second operand as a string representing each part.
@@ -28,7 +49,7 @@ ublic class FracCalc {
         // Final project: All answers must be reduced.
         //               Example "4/5 * 1_2/4" returns "1_1/5".
 
-        return "";
+        return num2;
     }//end produceAnswer method
 
     // TODO: Fill in the space below with helper methods
@@ -43,14 +64,13 @@ ublic class FracCalc {
     public static int greatestCommonDivisor(int a, int b){
       int  gcd = 1;
 
-      for(int i = 1; i <= a && i <= b; i++)
-      {
+      for(int i = 1; i <= a && i <= b; i++)  {
 
       if(a%i==0 && b%i==0)
 
       gcd = i;
       }
-    
+
       return gcd;
 
 
@@ -65,8 +85,8 @@ ublic class FracCalc {
      * @param b - Second integer.
      * @return The LCM.
      */
-    public static int leastCommonMultiple(int a, int b){
+  //  public static int leastCommonMultiple(int a, int b){
 
-    }//end leastCommonMultiple
+  //  }//end leastCommonMultiple
 
 }//end class
