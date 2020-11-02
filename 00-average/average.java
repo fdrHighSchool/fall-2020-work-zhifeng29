@@ -2,7 +2,7 @@ import java.util.Scanner;
 class Main{
   public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
-    int total = 0;
+    double total = 0;
     int times = 0;
     boolean finish = false;
     while (finish == false){
@@ -21,7 +21,8 @@ class Main{
 
 
     }
-     System.out.printf("the average of %d number(s) is %d", times,total/times);
+
+     System.out.printf("the average of %d number(s) is %.2f", times,total/times);
   }
   public static boolean isInteger (String x){//2
    try {
