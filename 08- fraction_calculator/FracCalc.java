@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.lang.Math;
 public class FracCalc {
     /**
      * Prompts user for input, passes that input to produceAnswer, then outputs the result.
@@ -6,14 +7,21 @@ public class FracCalc {
      */
     public static void main(String[] args){
       Scanner in = new Scanner(System.in);
-      //while loop
-      System.out.println("please enter you equation?");
-      String input = in.nextLine();
-      String ans = produceAnswer(input);
-      System.out.println(ans);
+      boolean use = true;
+      while (use == true){
+        System.out.println("please enter you equation?");
+        String input = in.nextLine();
+        if( input.equalsIgnoreCase("stop")){
+          use = false;
+        }
+
+        String ans = produceAnswer(input);
+        System.out.println(ans);
+
         // TODO: Read the input from the user and call produceAnswer with an equation
         // Checkpoint 1: Create a Scanner, read one line of input, pass that input to produceAnswer, print the result.
         // Checkpoint 2: Accept user input multiple times.
+      }
     }//end main method
 
     /**
@@ -25,18 +33,42 @@ public class FracCalc {
      */
     public static String produceAnswer(String input){
       int end = input.length();
-      /*for (int i = 0 ; i > max ; i++){
-        if(input.substring(i,i+1) ){}
-        else if () {}*/
-      int space = input.indexOf(" ") + 1;
 
+      int space = input.indexOf(" ") + 1;
+    //  System.out.println(input.indexOf(" ") + 1);
       String num1 = input.substring(0,space);
       System.out.println(num1);
 
-      int space2 = input.indexOf(" ", 2  ) + 1;
+      int space2 = input.indexOf(" ",1) + 3;
+      //System.out.println(input.indexOf(" ") + 3);
       String num2 = input.substring(space2,end);
 
+//Checkpoint 2
+      if (num1.indexOf("_") >= 0 ){
+        String WN1 = num1.substring(0,num1.indexOf("_"));
+        String N1 = num1.substring(num1.indexOf("_")+1,num1.indexOf("/"));
+        String D1 = num1.substring(num1.indexOf("/")+1);
+        System.out.println( "whole 1: "+WN1);
+        System.out.println("numerator 1: "+N1);
+        System.out.println("denominator 1: "+D1);
+      }
+      else {
+        String WN1 = num1;
+        System.out.println(WN1);
+      }
 
+      if (num2.indexOf("_") >= 0 ){
+        String WN2 = num2.substring(0,num2.indexOf("_"));
+        String N2 = num2.substring(num2.indexOf("_")+1,num2.indexOf("/"));
+        String D2 = num2.substring(num2.indexOf("/")+1);
+        System.out.println( "whole 2: "+WN2);
+        System.out.println("numerator 2: "+N2);
+        System.out.println("denominator 2: "+D2);
+      }
+      else {
+        String WN2 = num2;
+        System.out.println(WN2);
+      }
 
 
         // TODO: Implement this function to produce the solution to the input
@@ -49,7 +81,7 @@ public class FracCalc {
         // Final project: All answers must be reduced.
         //               Example "4/5 * 1_2/4" returns "1_1/5".
 
-        return num2;
+        return "z";
     }//end produceAnswer method
 
     // TODO: Fill in the space below with helper methods
@@ -61,6 +93,7 @@ public class FracCalc {
      * @param b - Second integer.
      * @return The GCD.
      */
+
     public static int greatestCommonDivisor(int a, int b){
       int  gcd = 1;
 
@@ -73,20 +106,40 @@ public class FracCalc {
 
       return gcd;
 
-
-
-
     }//end greatestCommonDivisor method
 
-    /**
+    /*
      * leastCommonMultiple - Find the smallest integer that can be evenly divided by two integers.
      *      Use this helper method in Checkpoint 3 to evaluate expressions.
      * @param a - First integer.
      * @param b - Second integer.
      * @return The LCM.
      */
-  //  public static int leastCommonMultiple(int a, int b){
+    public static int leastCommonMultiple(int a, int b){
+      int lcm = 0;
+      if(a == 0|| b==0){
+  		    lcm = 0;
+  		}
+  		else if (a > b && a % b == 0 ) {
+  		    lcm = b;
+  	  }
+  		else if (b > a && b % a == 0) {
+  		    lcm = a;
 
-  //  }//end leastCommonMultiple
+  		}
+      else if(a == b){
+        lcm = a;
+      }
+
+
+  		else {
+  		  lcm = a*b;
+  		}
+
+
+
+      return lcm;
+
+    }//end leastCommonMultiple
 
 }//end class

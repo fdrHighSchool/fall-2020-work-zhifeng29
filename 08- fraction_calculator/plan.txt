@@ -1,0 +1,4 @@
+1.use index of space to break down each number in a string
+2.we know math operations is after and before a space so we can set up 4 string variable to compare with it  
+ex: if operation == "+"{blahjjkkk}
+      else if operation == "-"{blasvasfs}
