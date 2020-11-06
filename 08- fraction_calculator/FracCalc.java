@@ -44,6 +44,7 @@ public class FracCalc {
       String num2 = input.substring(space2,end);
 
 //Checkpoint 2
+String cp2;
       if (num1.indexOf("_") >= 0 ){
         String WN1 = num1.substring(0,num1.indexOf("_"));
         String N1 = num1.substring(num1.indexOf("_")+1,num1.indexOf("/"));
@@ -54,7 +55,7 @@ public class FracCalc {
       }
       else {
         String WN1 = num1;
-        System.out.println(WN1);
+        System.out.println("whole 1: "+WN1);
       }
 
       if (num2.indexOf("_") >= 0 ){
@@ -64,10 +65,12 @@ public class FracCalc {
         System.out.println( "whole 2: "+WN2);
         System.out.println("numerator 2: "+N2);
         System.out.println("denominator 2: "+D2);
+         cp2 = "whole:"+ WN2 + " numerator:" +N2 + " denominator:"+ D2;
       }
       else {
         String WN2 = num2;
-        System.out.println(WN2);
+        System.out.println("whole 2: "+WN2);
+         cp2 = WN2;
       }
 
 
@@ -81,7 +84,7 @@ public class FracCalc {
         // Final project: All answers must be reduced.
         //               Example "4/5 * 1_2/4" returns "1_1/5".
 
-        return "z";
+        return cp2;
     }//end produceAnswer method
 
     // TODO: Fill in the space below with helper methods
