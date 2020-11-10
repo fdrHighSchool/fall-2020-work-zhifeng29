@@ -8,7 +8,7 @@ public class FracCalc {
     public static void main(String[] args){
       Scanner in = new Scanner(System.in);
       boolean use = true;
-      while (use == true){
+      while (use == true){//until user say "stop" also the main loop
         System.out.println("please enter you equation?");
         String input = in.nextLine();
         if( input.equalsIgnoreCase("stop")){
@@ -35,44 +35,76 @@ public class FracCalc {
       int end = input.length();
 
       int space = input.indexOf(" ") + 1;
-    //  System.out.println(input.indexOf(" ") + 1);
-      String num1 = input.substring(0,space);
-      System.out.println(num1);
+      //System.out.println(input.indexOf(" ") + 1);
+      String num1 = input.substring(0,space);//get first number
+      //System.out.println(num1);
 
       int space2 = input.indexOf(" ",1) + 3;
       //System.out.println(input.indexOf(" ") + 3);
-      String num2 = input.substring(space2,end);
+      String num2 = input.substring(space2,end);//second number
 
-//Checkpoint 2
-String cp2;
-      if (num1.indexOf("_") >= 0 ){
-        String WN1 = num1.substring(0,num1.indexOf("_"));
-        String N1 = num1.substring(num1.indexOf("_")+1,num1.indexOf("/"));
-        String D1 = num1.substring(num1.indexOf("/")+1);
-        System.out.println( "whole 1: "+WN1);
+      String Operation = input.substring(space,space + 1);//locate substring of the operation
+      //System.out.println(Operation);
+      int type;
+// see which kind of operation it is
+      if (Operation.equals("+")){
+        type = 1;
+      }
+      else if (Operation.equals("-")) {
+        type = 2;
+      }
+      else if (Operation.equals("*")) {
+        type = 3;
+      }
+      else if (Operation.equals("/")) {
+        type = 4;
+      }
+      else{
+        System.out.println("invalid operation");
+        return "stop";
+      }
+//Checkpoint 2 break down each number into charcter(s)
+String W1,N1,D1,W2,N2,D2;
+      if (num1.indexOf("_") >= 0 ){//for have fraction
+         W1 = num1.substring(0,num1.indexOf("_"));
+         N1 = num1.substring(num1.indexOf("_")+1,num1.indexOf("/"));
+         D1 = num1.substring(num1.indexOf("/")+1);
+        System.out.println( "whole 1: "+W1);
         System.out.println("numerator 1: "+N1);
         System.out.println("denominator 1: "+D1);
+
       }
-      else {
-        String WN1 = num1;
-        System.out.println("whole 1: "+WN1);
+      else {//don't have faction
+         W1 = num1;
+         N1 = "0";
+         D1 = "1";
+        System.out.println("whole 1: "+W1);
       }
 
       if (num2.indexOf("_") >= 0 ){
-        String WN2 = num2.substring(0,num2.indexOf("_"));
-        String N2 = num2.substring(num2.indexOf("_")+1,num2.indexOf("/"));
-        String D2 = num2.substring(num2.indexOf("/")+1);
-        System.out.println( "whole 2: "+WN2);
+         W2 = num2.substring(0,num2.indexOf("_"));
+         N2 = num2.substring(num2.indexOf("_")+1,num2.indexOf("/"));
+         D2 = num2.substring(num2.indexOf("/")+1);
+        System.out.println( "whole 2: "+W2);
         System.out.println("numerator 2: "+N2);
         System.out.println("denominator 2: "+D2);
-         cp2 = "whole:"+ WN2 + " numerator:" +N2 + " denominator:"+ D2;
+
       }
       else {
-        String WN2 = num2;
-        System.out.println("whole 2: "+WN2);
-         cp2 = WN2;
+         W2 = num2;
+         N2 = "0";
+         D2 = "1";
+        System.out.println("whole 2: "+W2);
       }
 
+      int w1  =  Integer.parseInt(W1);
+      int n1  =  Integer.parseInt(N1);
+      int d1  =  Integer.parseInt(D1);
+      int w2  =  Integer.parseInt(W2);
+      int n1  =  Integer.parseInt(N2);
+      int d2  =  Integer.parseInt(D2);
+
+      System.out.println(leastCommonMultiple(d1,d2))
 
         // TODO: Implement this function to produce the solution to the input
         // Checkpoint 1: Return the second operand.  Example "4/5 * 1_2/4" returns "1_2/4".
@@ -84,7 +116,7 @@ String cp2;
         // Final project: All answers must be reduced.
         //               Example "4/5 * 1_2/4" returns "1_1/5".
 
-        return cp2;
+        return "3";
     }//end produceAnswer method
 
     // TODO: Fill in the space below with helper methods
@@ -100,13 +132,12 @@ String cp2;
     public static int greatestCommonDivisor(int a, int b){
       int  gcd = 1;
 
-      for(int i = 1; i <= a && i <= b; i++)  {
+      for(int i = 1; i <= a && i <= b; i++){
 
       if(a%i==0 && b%i==0)
 
       gcd = i;
       }
-
       return gcd;
 
     }//end greatestCommonDivisor method
@@ -128,21 +159,22 @@ String cp2;
   	  }
   		else if (b > a && b % a == 0) {
   		    lcm = a;
-
   		}
       else if(a == b){
         lcm = a;
       }
-
-
   		else {
   		  lcm = a*b;
   		}
-
-
-
       return lcm;
 
     }//end leastCommonMultiple
+
+
+  public static int DoOperation( int type, int w1, int n1, int d1, int w2, int n2, int d2 ){
+
+    return 1;
+  }
+
 
 }//end class
