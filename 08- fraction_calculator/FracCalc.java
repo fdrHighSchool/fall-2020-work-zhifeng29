@@ -32,50 +32,48 @@ public class FracCalc {
      *      Example: return ==> "1_1/4"
      */
     public static String produceAnswer(String input){
+      if (input.contains("stop") == true){
+        System.out.println("stop");
+        return "stop";
+      }
+
       int end = input.length();
 
       int space = input.indexOf(" ") + 1;
-      //System.out.println(input.indexOf(" ") + 1);
-      String num1 = input.substring(0,space);//get first number
-      //System.out.println(num1);
+    //  System.out.println(input.indexOf(" ") + 1);
+      String num1 = input.substring(0,space-1);//get first number
+      //System.out.println(num1.length());
 
       int space2 = input.indexOf(" ",1) + 3;
-      //System.out.println(input.indexOf(" ") + 3);
+    //  System.out.println(input.indexOf(" ") + 3);
       String num2 = input.substring(space2,end);//second number
 
       String Operation = input.substring(space,space + 1);//locate substring of the operation
-      //System.out.println(Operation);
-      int type;
-// see which kind of operation it is
-      if (Operation.equals("+")){
-        type = 1;
-      }
-      else if (Operation.equals("-")) {
-        type = 2;
-      }
-      else if (Operation.equals("*")) {
-        type = 3;
-      }
-      else if (Operation.equals("/")) {
-        type = 4;
-      }
-      else{
-        System.out.println("invalid operation");
-        return "stop";
-      }
+
+
+
+
 //Checkpoint 2 break down each number into charcter(s)
-String W1,N1,D1,W2,N2,D2;
+System.out.println( num1.length());
+System.out.println( num2.length());
+      String W1,N1,D1,W2,N2,D2;
       if (num1.indexOf("_") >= 0 ){//for have fraction
          W1 = num1.substring(0,num1.indexOf("_"));
          N1 = num1.substring(num1.indexOf("_")+1,num1.indexOf("/"));
-         D1 = num1.substring(num1.indexOf("/")+1);
+         D1 = num1.substring(num1.indexOf("/")+1,num1.length());
         System.out.println( "whole 1: "+W1);
         System.out.println("numerator 1: "+N1);
         System.out.println("denominator 1: "+D1);
-
+      }
+      else if (num1.contains("/")== true) {
+         N1 = num1.substring(0,num1.indexOf("/"));
+         D1 = num1.substring(num1.indexOf("/")+1);
+         W1 = "0";
+         System.out.println("numerator 1: "+N1);
+         System.out.println("denominator 1: "+D1);
       }
       else {//don't have faction
-         W1 = num1;
+         W1 = num1.substring(0,num1.length());
          N1 = "0";
          D1 = "1";
         System.out.println("whole 1: "+W1);
@@ -88,7 +86,13 @@ String W1,N1,D1,W2,N2,D2;
         System.out.println( "whole 2: "+W2);
         System.out.println("numerator 2: "+N2);
         System.out.println("denominator 2: "+D2);
-
+      }
+      else if (num2.contains("/")== true) {
+         N2 = num2.substring(0,num2.indexOf("/"));
+         D2 = num2.substring(num2.indexOf("/")+1);
+         W2 = "0";
+         System.out.println("numerator 2: "+N2);
+         System.out.println("denominator 2: "+D2);
       }
       else {
          W2 = num2;
@@ -101,10 +105,36 @@ String W1,N1,D1,W2,N2,D2;
       int n1  =  Integer.parseInt(N1);
       int d1  =  Integer.parseInt(D1);
       int w2  =  Integer.parseInt(W2);
-      int n1  =  Integer.parseInt(N2);
+      int n2  =  Integer.parseInt(N2);
       int d2  =  Integer.parseInt(D2);
 
-      System.out.println(leastCommonMultiple(d1,d2))
+      n1 = n1 + (w1 * d1);
+      n2 = n2 + (w2 * d2);
+      System.out.println(n1);
+      System.out.println(n2);
+
+
+      if (Operation.equals("+")){
+        String ans = addition(n1,d1,n2,d2);
+        System.out.println(ans);
+      }
+      else if (Operation.equals("-")) {
+        String ans = subraction(n1,d1,n2,d2);
+        System.out.println(ans);
+      }
+      else if (Operation.equals("*")) {
+        String ans = multiplication(n1,d1,n2,d2);
+        System.out.println(ans);
+      }
+      else if (Operation.equals("/")) {
+        String ans = division(n1,d1,n2,d2);
+        System.out.println(ans);
+      }
+      else{
+        System.out.println("invalid operation");
+        return "stop";
+      }
+      //System.out.println(leastCommonMultiple(d1,d2));
 
         // TODO: Implement this function to produce the solution to the input
         // Checkpoint 1: Return the second operand.  Example "4/5 * 1_2/4" returns "1_2/4".
@@ -116,7 +146,7 @@ String W1,N1,D1,W2,N2,D2;
         // Final project: All answers must be reduced.
         //               Example "4/5 * 1_2/4" returns "1_1/5".
 
-        return "3";
+        return "CP3";
     }//end produceAnswer method
 
     // TODO: Fill in the space below with helper methods
@@ -152,13 +182,13 @@ String W1,N1,D1,W2,N2,D2;
     public static int leastCommonMultiple(int a, int b){
       int lcm = 0;
       if(a == 0|| b==0){
-  		    lcm = 0;
+        lcm = 0;
   		}
   		else if (a > b && a % b == 0 ) {
-  		    lcm = b;
+        lcm = b;
   	  }
   		else if (b > a && b % a == 0) {
-  		    lcm = a;
+        lcm = a;
   		}
       else if(a == b){
         lcm = a;
@@ -171,10 +201,29 @@ String W1,N1,D1,W2,N2,D2;
     }//end leastCommonMultiple
 
 
-  public static int DoOperation( int type, int w1, int n1, int d1, int w2, int n2, int d2 ){
-
-    return 1;
+  public static String addition(int n1 ,int d1 , int n2 , int d2){
+  int D = d1 * d2;
+  int N = (n1 * d2) + (d1 * n2);
+  String ans = N + "/" + D;
+    return ans;
   }
-
+  public static String subraction(int n1 ,int d1 , int n2, int d2){
+    int D = d1 * d2;
+    int N = (n1 * d2) - (d1 * n2);
+    String ans = N + "/" + D;
+      return ans;
+  }
+  public static String multiplication(int n1 ,int d1 , int n2, int d2){
+    int D = d1 * d2;
+    int N = n1 * n2;
+    String ans = N + "/" + D;
+      return ans;
+  }
+  public static String division(int n1 ,int d1, int n2, int d2){
+    int D = n1 * d2;
+    int N = d1 * n2;
+    String ans = D + "/" + N;
+      return ans;
+  }
 
 }//end class
