@@ -16,7 +16,7 @@ public class FracCalc {
         }
 
         String ans = produceAnswer(input);
-        System.out.println(ans);
+        System.out.println("The answer is "+ ans);
 
         // TODO: Read the input from the user and call produceAnswer with an equation
         // Checkpoint 1: Create a Scanner, read one line of input, pass that input to produceAnswer, print the result.
@@ -51,8 +51,6 @@ public class FracCalc {
       String Operation = input.substring(space,space + 1);//locate substring of the operation
 
 
-
-
 //Checkpoint 2 break down each number into charcter(s)
 System.out.println( num1.length());
 System.out.println( num2.length());
@@ -65,7 +63,7 @@ System.out.println( num2.length());
         System.out.println("numerator 1: "+N1);
         System.out.println("denominator 1: "+D1);
       }
-      else if (num1.contains("/")== true) {
+      else if (num1.contains("/")) {
          N1 = num1.substring(0,num1.indexOf("/"));
          D1 = num1.substring(num1.indexOf("/")+1);
          W1 = "0";
@@ -87,7 +85,7 @@ System.out.println( num2.length());
         System.out.println("numerator 2: "+N2);
         System.out.println("denominator 2: "+D2);
       }
-      else if (num2.contains("/")== true) {
+      else if (num2.contains("/")) {
          N2 = num2.substring(0,num2.indexOf("/"));
          D2 = num2.substring(num2.indexOf("/")+1);
          W2 = "0";
@@ -100,7 +98,7 @@ System.out.println( num2.length());
          D2 = "1";
         System.out.println("whole 2: "+W2);
       }
-
+      //Checkpoint3
       int w1  =  Integer.parseInt(W1);
       int n1  =  Integer.parseInt(N1);
       int d1  =  Integer.parseInt(D1);
@@ -113,29 +111,68 @@ System.out.println( num2.length());
       System.out.println(n1);
       System.out.println(n2);
 
-
+       String ans;
       if (Operation.equals("+")){
-        String ans = addition(n1,d1,n2,d2);
+         ans = addition(n1,d1,n2,d2);
         System.out.println(ans);
       }
       else if (Operation.equals("-")) {
-        String ans = subraction(n1,d1,n2,d2);
+         ans = subraction(n1,d1,n2,d2);
         System.out.println(ans);
       }
       else if (Operation.equals("*")) {
-        String ans = multiplication(n1,d1,n2,d2);
+         ans = multiplication(n1,d1,n2,d2);
         System.out.println(ans);
       }
       else if (Operation.equals("/")) {
-        String ans = division(n1,d1,n2,d2);
+         ans = division(n1,d1,n2,d2);
         System.out.println(ans);
       }
       else{
         System.out.println("invalid operation");
         return "stop";
       }
-      //System.out.println(leastCommonMultiple(d1,d2));
 
+      int FinalN = Integer.parseInt(ans.substring(0,ans.indexOf("/")));
+      int FinalD = Integer.parseInt(ans.substring(ans.indexOf("/")+1));
+      System.out.println(FinalN);
+      System.out.println(FinalD);
+      int gcd = greatestCommonDivisor(FinalN, FinalD);
+      System.out.println(gcd);
+
+      FinalN = FinalN / gcd;
+      FinalD = FinalD / gcd;
+
+      System.out.println(FinalN);
+      System.out.println(FinalD);
+      int FinalW = 0;
+
+      if (FinalN < 0){
+        while (Math.abs(FinalN) >= FinalD){
+        FinalN = Math.abs(FinalN) - FinalD;
+        FinalW--;
+        }
+      }
+      else if (FinalN > 0 ) {
+        while (FinalN >= FinalD){
+        FinalN = FinalN - FinalD;
+        FinalW++;
+        }
+      }
+
+      System.out.println(FinalW);
+      System.out.println(FinalN);
+      System.out.println(FinalD);
+
+      if (FinalW == 0){
+        return FinalN+"/"+FinalD;
+      }
+      else if (FinalD == 0 || FinalD == 1){
+        return FinalW+"";
+      }
+      else  {
+        return FinalW+"_"+FinalN+"/"+FinalD;
+      }
         // TODO: Implement this function to produce the solution to the input
         // Checkpoint 1: Return the second operand.  Example "4/5 * 1_2/4" returns "1_2/4".
         // Checkpoint 2: Return the second operand as a string representing each part.
@@ -146,7 +183,7 @@ System.out.println( num2.length());
         // Final project: All answers must be reduced.
         //               Example "4/5 * 1_2/4" returns "1_1/5".
 
-        return "CP3";
+        //return "final";
     }//end produceAnswer method
 
     // TODO: Fill in the space below with helper methods
@@ -199,8 +236,12 @@ System.out.println( num2.length());
       return lcm;
 
     }//end leastCommonMultiple
-
-
+/*
+N:
+P:
+I:
+R:
+*/
   public static String addition(int n1 ,int d1 , int n2 , int d2){
   int D = d1 * d2;
   int N = (n1 * d2) + (d1 * n2);
