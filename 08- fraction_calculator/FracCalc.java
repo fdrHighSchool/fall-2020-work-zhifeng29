@@ -25,7 +25,7 @@ public class FracCalc {
 
         return "stop";
       }
-
+      //break down in to 2 number
       int end = input.length();
 
       int space = input.indexOf(" ") + 1;
@@ -40,7 +40,7 @@ public class FracCalc {
       String Operation = input.substring(space,space + 1);//locate substring of the operation
 
 
-//Checkpoint 2 break down each number into charcter(s)1
+      //Checkpoint 2 break down each number into charcter(s)1
 
       String W1,N1,D1,W2,N2,D2;
       if (num1.indexOf("_") >= 0 ){//for have fraction
@@ -123,7 +123,6 @@ public class FracCalc {
       }
       else if (Operation.equals("/")) {
          ans = division(n1,d1,n2,d2);
-
       }
       else{
         System.out.println("invalid operation");
@@ -135,13 +134,13 @@ public class FracCalc {
 
       int gcd = greatestCommonDivisor(Math.abs(FinalN), Math.abs(FinalD));
       //System.out.println("gcd =" +gcd);
-
+      //divide by gcd
       FinalN = FinalN / gcd;
       FinalD = FinalD / gcd;
 
 
       int FinalW = 0;
-
+      //turn the fraction back into mix number denpend on wheather it is postive or negative
       if (FinalN < 0){
         while (Math.abs(FinalN) >= Math.abs(FinalD)){
         FinalN = Math.abs(FinalN) - FinalD;
@@ -155,7 +154,7 @@ public class FracCalc {
         }
       }
 
-
+//depend on what are the final result to decide what to return
       if (FinalW == 0 && FinalN == 0){
         return FinalW+"";
       }
@@ -228,7 +227,7 @@ public class FracCalc {
   public static String division(int n1 ,int d1, int n2, int d2){
     int N = n1 * d2;
     int D = d1 * n2;
-    if (D < 0 ){// in case denominator is negative
+    if (D < 0 ){// in case denominator is negative it would flip N and D
       N = N * -1;
       D = D * -1;
     }
