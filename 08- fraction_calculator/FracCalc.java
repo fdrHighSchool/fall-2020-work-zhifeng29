@@ -22,7 +22,6 @@ public class FracCalc {
 
     public static String produceAnswer(String input){
       if (input.contains("stop")){
-
         return "stop";
       }
       //break down in to 2 number
@@ -137,7 +136,6 @@ public class FracCalc {
       //divide by gcd
       FinalN = FinalN / gcd;
       FinalD = FinalD / gcd;
-
 
       int FinalW = 0;
       //turn the fraction back into mix number denpend on wheather it is postive or negative
