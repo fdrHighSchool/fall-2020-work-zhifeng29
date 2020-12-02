@@ -19,7 +19,6 @@ class Main{
         finish = true;
       }
 
-
     }
 
      System.out.printf("the average of %d number(s) is %.2f", times,total/times);
