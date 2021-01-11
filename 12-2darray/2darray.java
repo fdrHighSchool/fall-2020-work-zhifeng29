@@ -2,8 +2,8 @@ import java.util.*;
 public class Main
 {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-       int [][] arr =new int [30][10];
+       Scanner scanner = new Scanner(System.in);
+       int [][] arr = new int [30][10];
        fillarray(arr);
        /*
        for(int i = 0 ; i<30 ;i++){
@@ -21,7 +21,7 @@ public class Main
     Random random = new Random();
     for (int i = 0; i < 30; i++) {
         for (int j = 0; j < 10; j++) {
-            arr[i][j] = (int) (Math.random() * (100 - 55 + 1) + 55);
+            arr[i][j] = (int) (Math.random() * (45 + 1) + 55);
         }
     }
     return arr;
@@ -62,8 +62,8 @@ public class Main
             }
         }
     }
-    System.out.println("The top average is " + first);
-    System.out.println("The second highest average is " + second);
+    System.out.println("The Valedictorian is " + first);
+    System.out.println("The SAlutatorian is " + second);
     return 0;
     }
 
