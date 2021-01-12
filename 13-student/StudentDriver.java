@@ -1,31 +1,26 @@
-import java.util.*;
 public class StudentDriver {
   public static void main(String[] args) {
-    Scanner in = new Scanner(System.in);
-
     Student student1 = new Student("Hans", "123456789");
+    Student student2 = new Student("Sophia", "234345646");
     System.out.println(student1);
-
-    student1.setName("Joshua");
-
-    System.out.println(student1);
-
-    Student student2 = new Student("Fun", "987654321");
     System.out.println(student2);
 
+    student1.setName("Joshua");
+    student1.setName("Joshua"); //setter method (mutator)
+    System.out.println(student1);
 
+    System.out.println(student1.getName()); //Joshua
 
+    student1.addGrade(100);
+    student1.displayGrades();
+    student1.addGrade(85);
+    student1.displayGrades();
 
+    student2.addGrade(95);
+    student2.displayGrades();
 
-
-
-
-/*
-    int num = 0;
-    for (int i = 0 ; i<10 ; i++){
-      num = in.nextInt();
-      GGrade GetGrade = new GGrade(num);
-    }*/
+    Student student3 = new Student("Elias", "987654321");
+    student3.fillArray();
   }//end main method
 
 }//end class
