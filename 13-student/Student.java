@@ -67,7 +67,16 @@ public class Student {
 
 
   public double calculateAverage() {
-    return 0.0;
+    int sum = 0;
+    int count = 0;
+
+    for (int i = 0; i < this.grades.length; i++) {
+      if(this.grades[i] != 0){
+        sum += this.grades[i];
+        count++;
+      }
+    }
+    return sum/count;
   }//end calculateAverage() method
 
 
