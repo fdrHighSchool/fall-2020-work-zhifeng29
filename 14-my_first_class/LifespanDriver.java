@@ -5,5 +5,6 @@ public class LifespanDriver {
     System.out.println(rat);
     System.out.println(elephant);
     System.out.printf("%.2f%%",rat.percent());
+    System.out.printf("\n%.2f%%",elephant.percent());
   }//end of main
 }//end of class
